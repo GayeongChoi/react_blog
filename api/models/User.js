@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+//required(true) : 생성 시 필수적으로 필요한 것
 
 const UserSchema = new mongoose.Schema(
     {
@@ -18,10 +19,10 @@ const UserSchema = new mongoose.Schema(
         },
         profilePic: {
             type: String,
-            default: "",
+            default: '',
         },
     },
     { timestamps: true },
 );
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports = mongoose.model('User', UserSchema);
