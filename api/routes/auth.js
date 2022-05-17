@@ -1,9 +1,9 @@
-const router = require("express").Router();
-const User = require("../models/User");
-const bcrypt = require("bcrypt");
+const router = require('express').Router();
+const User = require('../models/User');
+const bcrypt = require('bcrypt');
 
 //회원가입
-router.post("/register", async (req, res) => {
+router.post('/register', async (req, res) => {
     try {
         const salt = await bcrypt.genSalt(10);
         const hashedPass = await bcrypt.hash(req.body.password, salt);
@@ -20,20 +20,19 @@ router.post("/register", async (req, res) => {
 });
 
 //로그인
-router.post("/login", async (req, res) => {
+router.post('/login', async (req, res) => {
     try {
         const user = await User.findOne({ username: req.body.username });
-        !user && res.status(400).json("회원이 존재하지 않습니다.");
+        !user && res.status(400).json('회원이 존재하지 않습니다.');
 
-        const valiodated = await bcrypt.compare(req.body.password, user.password);
-        !valiodated && res.status(400).json("회원이 존재하지 않습니다.");
+        const validated = await bcrypt.compare(req.body.password, user.password);
+        !validated && res.status(400).json('회원이 존재하지 않습니다.');
 
         const { password, ...others } = user._doc;
         res.status(200).json(others);
     } catch (err) {
         res.status(500).json(err);
     }
-    z;
 });
 
 module.exports = router;

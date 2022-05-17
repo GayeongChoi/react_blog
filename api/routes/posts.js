@@ -70,18 +70,18 @@ router.get('/:id', async (req, res) => {
 
 //모든 포스트 가져오기
 router.get('/', async (req, res) => {
-    const userName = req.query.user;
-    const catName = req.query.cat;
+    const username = req.query.user;
+    const catname = req.query.cat;
 
     try {
         let posts;
 
-        if (userName) {
-            posts = await Post.find({ userName });
-        } else if (catName) {
+        if (username) {
+            posts = await Post.find({ username });
+        } else if (catname) {
             posts = await Post.find({
                 categories: {
-                    $in: [catName],
+                    $in: [catname],
                 },
             });
         } else {
@@ -92,4 +92,6 @@ router.get('/', async (req, res) => {
         res.status(500).json(err);
     }
 });
+// *user(username)이 없으면 DB의 모든 포스트를 가져온다.
+
 module.exports = router;

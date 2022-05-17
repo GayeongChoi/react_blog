@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
 });
 
 //카테고리 가져오기
-router.get('/', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         const cats = await Category.find();
         res.status(200).json(cats);

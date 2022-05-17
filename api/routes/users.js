@@ -2,6 +2,9 @@ const router = require('express').Router();
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 
+// /:id = DB에 저장된 id를 url에 입력하면 해당id의 데이터를 가져옴
+// 예시:  localhost:5060/api/users/6282f4722a30cc614cd0f080
+
 //회원 정보 수정
 router.put('/:id', async (req, res) => {
     if (req.body.userId === req.params.id) {
